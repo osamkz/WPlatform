@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structured Products Platform | Professional Investment Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Professional Color Palette */
+            --primary-dark: #0f172a;
+            --primary-main: #1e3a5f;
+            --primary-light: #3b5998;
+            --accent-blue: #0ea5e9;
+            --accent-cyan: #06b6d4;
+            --success-green: #10b981;
+            --warning-amber: #f59e0b;
+            --danger-red: #ef4444;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #3b5998 100%);
+            --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--neutral-800);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.025em;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem 0.5rem 0.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .user-details {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-tabs-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            padding: 0 2rem;
+        }
+
+        .nav-tab {
+            padding: 1.25rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--neutral-500);
+            border-bottom: 3px solid transparent;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            position: relative;
+            font-family: inherit;
+        }
+
+        .nav-tab:hover {
+            color: var(--accent-blue);
+            background: var(--neutral-50);
+        }
+
+        .nav-tab.active {
+            color: var(--primary-main);
+            border-bottom-color: var(--accent-blue);
+            background: linear-gradient(180deg, rgba(14, 165, 233, 0.05) 0%, transparent 100%);
+        }
+
+        .nav-tab i {
+            font-size: 1.1rem;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .nav-tab.active .tab-indicator {
+            transform: scaleX(1);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--neutral-800);
+            letter-spacing: -0.025em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent-blue);
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: all var(--transition-base);
+            border: 1px solid var(--neutral-200);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform var(--transition-base);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--accent-blue);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .product-isin {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .product-type-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-body {
+            padding: 1.5rem;
+        }
+
+        .product-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--neutral-50);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            color: var(--neutral-500);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--neutral-800);
+            font-size: 0.95rem;
+        }
+
+        .product-description {
+            color: var(--neutral-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.625rem;
+            font-size: 0.9rem;
+            color: var(--neutral-700);
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--success-green);
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .risk-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .risk-low {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+
+        .risk-medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-amber);
+        }
+
+        .risk-high {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-red);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-subscribed {
+            background: var(--gradient-success);
+            color: white;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            cursor: default;
+        }
+
+        .btn-secondary {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+            border: 1px solid var(--neutral-300);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neutral-200);
+            border-color: var(--neutral-400);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Portfolio Styles */
+        .portfolio-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .summary-card {
+            text-align: center;
+            padding: 1.75rem;
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            border-radius: 12px;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-base);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-label {
+            color: var(--neutral-500);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-change {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .positive { 
+            color: var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .negative { 
+            color: var(--danger-red);
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .portfolio-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        th {
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            font-weight: 600;
+            color: var(--neutral-600);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover {
+            background: var(--neutral-50);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* AI Companion Styles */
+        .ai-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        .ai-chat {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            height: 650px;
+            border: 1px solid var(--neutral-200);
+            overflow: hidden;
+        }
+
+        .chat-header-title {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--neutral-200);
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-header-title h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: linear-gradient(180deg, white 0%, var(--neutral-50) 100%);
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.ai {
+            flex-direction: row;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .ai .message-avatar {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .user .message-avatar {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .message-content {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 16px;
+            max-width: 75%;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .user .message-content {
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+        }
+
+        .chat-input {
+            padding: 1.5rem;
+            border-top: 1px solid var(--neutral-200);
+            display: flex;
+            gap: 1rem;
+            background: white;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .ai-sidebar {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+            height: fit-content;
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-title i {
+            color: var(--accent-blue);
+        }
+
+        .recommendation-card {
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: all var(--transition-base);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .recommendation-card:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .recommendation-card.high-risk {
+            border-left-color: var(--danger-red);
+        }
+
+        .recommendation-card.opportunity {
+            border-left-color: var(--success-green);
+        }
+
+        .recommendation-card strong {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neutral-800);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-card p {
+            color: var(--neutral-600);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+            /* Messages Styles */
+        .messages-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            height: 650px;
+        }
+
+        .conversations-list {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .conversations-header {
+            padding: 1.5rem;
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .conversations-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .conversation-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--neutral-200);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border-left: 3px solid transparent;
+        }
+
+        .conversation-item:hover {
+            background: var(--neutral-50);
+        }
+
+        .conversation-item.active {
+            background: linear-gradient(90deg, rgba(14, 165, 233, 0.05) 0%, transparent 100%);
+            border-left-color: var(--accent-blue);
+        }
+
+        .conversation-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .conversation-name {
+            font-weight: 600;
+            color: var(--neutral-800);
+            font-size: 0.95rem;
+        }
+
+        .conversation-time {
+            font-size: 0.75rem;
+            color: var(--neutral-500);
+        }
+
+        .conversation-preview {
+            color: var(--neutral-600);
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .unread-badge {
+            background: var(--gradient-accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+        }
+
+        .chat-window {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--neutral-200);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--neutral-200);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+        }
+
+        .manager-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            border: 2px solid white;
+        }
+
+        .manager-info h3 {
+            margin-bottom: 0.25rem;
+            color: var(--neutral-800);
+            font-size: 1.1rem;
+        }
+
+        .manager-info p {
+            color: var(--neutral-500);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success-green);
+            display: inline-block;
+            margin-right: 0.5rem;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-2xl);
+            border: 1px solid var(--neutral-200);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--neutral-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, var(--neutral-50) 0%, white 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--neutral-800);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--neutral-200);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            background: var(--neutral-50);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--neutral-500);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .close-modal:hover {
+            background: var(--neutral-100);
+            color: var(--neutral-800);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: var(--neutral-500);
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+
+            .ai-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-sidebar {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .user-info {
+                order: -1;
+            }
+
+            .nav-tabs-content {
+                padding: 0 1rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-tab {
+                padding: 1rem 1.5rem;
+                white-space: nowrap;
+            }
+
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-container,
+            .messages-container {
+                grid-template-columns: 1fr;
+            }
+
+            .product-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-details {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span>Structured Products Platform</span>
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <div class="user-name">John Investor</div>
+                    <div class="user-role">Premium Client</div>
+                </div>
+                <div class="user-avatar">JI</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="nav-tabs-content">
+            <button class="nav-tab active" data-tab="products">
+                <i class="fas fa-layer-group"></i>
+                <span>Products</span>
+                <div class="tab-indicator"></div>
+            </button>
+            <button class="nav-tab" data-tab="portfolio">
+                <i class="fas fa-briefcase"></i>
+                <span>My Portfolio</span>
+                <div class="tab-indicator"></div>
+            </button>
+            <button class="nav-tab" data-tab="ai-companion">
+                <i class="fas fa-sparkles"></i>
+                <span>AI Companion</span>
+                <div class="tab-indicator"></div>
+            </button>
+            <button class="nav-tab" data-tab="messages">
+                <i class="fas fa-comments"></i>
+                <span>Messages</span>
+                <div class="tab-indicator"></div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Products Tab -->
+        <div id="products" class="tab-content active">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-layer-group"></i>
+                    Available Structured Products
+                </h2>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Portfolio Tab -->
+        <div id="portfolio" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-briefcase"></i>
+                    My Portfolio
+                </h2>
+            </div>
+            <div class="portfolio-summary">
+                <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--neutral-800); margin-bottom: 1rem;">Portfolio Overview</h3>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label"><i class="fas fa-coins"></i> Total Investment</div>
+                        <div class="summary-value" id="totalInvestment">€0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label"><i class="fas fa-chart-line"></i> Current Value</div>
+                        <div class="summary-value" id="currentValue">€0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label"><i class="fas fa-percent"></i> Total Return</div>
+                        <div class="summary-value" id="totalReturn">€0</div>
+                        <div class="summary-change positive" id="returnPercent">+0.00%</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label"><i class="fas fa-box"></i> Products Held</div>
+                        <div class="summary-value" id="productsHeld">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>ISIN</th>
+                            <th>Investment Date</th>
+                            <th>Amount Invested</th>
+                            <th>Current Value</th>
+                            <th>Return</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portfolioTableBody">
+                        <!-- Portfolio items will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- AI Companion Tab -->
+        <div id="ai-companion" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-sparkles"></i>
+                    AI Investment Companion
+                </h2>
+            </div>
+            <div class="ai-container">
+                <div class="ai-chat">
+                    <div class="chat-header-title">
+                        <div class="message-avatar" style="background: var(--gradient-accent);">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <h3>AI Assistant</h3>
+                            <p style="font-size: 0.85rem; color: var(--neutral-500);">Always here to help with your investments</p>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="aiChatMessages">
+                        <div class="message ai">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                Hello! I'm your AI Investment Companion. I can analyze your portfolio, provide insights, and offer personalized recommendations. How can I help you today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="aiInput" placeholder="Ask me about your portfolio..." onkeypress="handleAiKeyPress(event)">
+                        <button class="btn btn-primary" onclick="sendAiMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            Send
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ai-sidebar">
+                    <h3 class="sidebar-title"><i class="fas fa-lightbulb"></i> Portfolio Insights</h3>
+                    <div id="aiRecommendations">
+                        <!-- Recommendations will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Tab -->
+        <div id="messages" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-comments"></i>
+                    Message Center
+                </h2>
+            </div>
+            <div class="messages-container">
+                <div class="conversations-list">
+                    <div class="conversations-header">
+                        <h3><i class="fas fa-comment-dots"></i> Conversations</h3>
+                    </div>
+                    <div class="conversation-item active" onclick="selectConversation(0)">
+                        <div class="conversation-header">
+                            <span class="conversation-name">Dr. Sarah Mueller <span class="unread-badge">2</span></span>
+                            <span class="conversation-time">2h ago</span>
+                        </div>
+                        <div class="conversation-preview">Thank you for your inquiry about the Capital Protection...</div>
+                    </div>
+                    <div class="conversation-item" onclick="selectConversation(1)">
+                        <div class="conversation-header">
+                            <span class="conversation-name">Michael Chen</span>
+                            <span class="conversation-time">1d ago</span>
+                        </div>
+                        <div class="conversation-preview">The performance bonus structure works as follows...</div>
+                    </div>
+                </div>
+
+                <div class="chat-window">
+                    <div class="chat-header">
+                        <div class="manager-avatar">SM</div>
+                        <div class="manager-info">
+                            <h3>Dr. Sarah Mueller</h3>
+                            <p><span class="status-indicator"></span>Online - Senior Product Manager</p>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="managerChatMessages" style="flex: 1; overflow-y: auto;">
+                        <div class="message ai">
+                            <div class="message-avatar" style="background: var(--gradient-accent); color: white;">
+                                SM
+                            </div>
+                            <div class="message-content">
+                                Hello John! Thank you for reaching out. How can I assist you with your structured products investments today?
+                            </div>
+                        </div>
+                        <div class="message user">
+                            <div class="message-avatar" style="background: var(--success-color); color: white;">
+                                JI
+                            </div>
+                            <div class="message-content">
+                                Hi Dr. Mueller, I have a question about the capital protection mechanism in product CH1571730808.
+                            </div>
+                        </div>
+                        <div class="message ai">
+                            <div class="message-avatar" style="background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); color: white;">
+                                SM
+                            </div>
+                            <div class="message-content">
+                                Great question! The capital protection in CH1571730808 guarantees 100% of your initial investment at maturity, regardless of the underlying asset performance. This is achieved through a zero-coupon bond structure that grows to match your principal over the 5-year term.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="managerInput" placeholder="Type your message..." onkeypress="handleManagerKeyPress(event)">
+                        <button class="btn btn-primary" onclick="sendManagerMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Subscription Modal -->
+    <div class="modal-overlay" id="subscriptionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-contract"></i> Subscribe to Product</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="modalProductName" readonly style="background: var(--neutral-50); cursor: not-allowed;">
+                </div>
+                <div class="form-group">
+                    <label>ISIN</label>
+                    <input type="text" id="modalProductIsin" readonly style="background: var(--neutral-50); cursor: not-allowed; font-family: monospace;">
+                </div>
+                <div class="form-group">
+                    <label>Investment Amount (€)</label>
+                    <input type="number" id="investmentAmount" placeholder="Minimum €10,000" min="10000" step="1000">
+                    <p class="form-note"><i class="fas fa-info-circle"></i> Minimum investment amount applies</p>
+                </div>
+                <div class="form-group">
+                    <label>Investment Horizon</label>
+                    <select id="investmentHorizon">
+                        <option value="full">Full Term (Recommended)</option>
+                        <option value="early">Early Exit (with potential penalty)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Risk Acknowledgment</label>
+                    <div style="background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, white 100%); padding: 1.25rem; border-radius: 12px; font-size: 0.9rem; border: 1px solid rgba(245, 158, 11, 0.2);">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--warning-amber); margin-right: 0.5rem;"></i>
+                        I acknowledge that I have read and understood the Key Information Document (KID) and the terms of this structured product. I understand that while capital protection may apply at maturity, early redemption may result in losses.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+                <button class="btn btn-primary" onclick="confirmSubscription()">
+                    <i class="fas fa-check-circle"></i>
+                    Confirm Subscription
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Products Data
+        const products = [
+            {
+                isin: 'CH1571730808',
+                name: 'Capital Protected Note on S&P 500',
+                type: 'Capital Protection',
+                issuer: 'Swiss Bank AG',
+                currency: 'EUR',
+                issueDate: '2024-01-15',
+                maturityDate: '2029-01-15',
+                term: '5 years',
+                minimumInvestment: 10000,
+                capitalProtection: '100%',
+                participation: '85%',
+                underlying: 'S&P 500 Index',
+                description: 'This structured note offers 100% capital protection at maturity combined with 85% participation in the positive performance of the S&P 500 Index. Ideal for conservative investors seeking equity exposure with downside protection.',
+                features: [
+                    '100% capital protection at maturity',
+                    '85% participation in S&P 500 gains',
+                    'No dividend rights',
+                    'Listed on SIX Swiss Exchange',
+                    'Early redemption possible with penalty'
+                ],
+                riskLevel: 'Low to Medium',
+                currentPrice: 98.5,
+                ytdPerformance: '+2.3%'
+            },
+            {
+                isin: 'CH1582340912',
+                name: 'Bonus Certificate on Euro Stoxx 50',
+                type: 'Bonus Certificate',
+                issuer: 'Leonteq Securities AG',
+                currency: 'EUR',
+                issueDate: '2024-03-01',
+                maturityDate: '2027-03-01',
+                term: '3 years',
+                minimumInvestment: 10000,
+                bonusLevel: '30%',
+                barrier: '60%',
+                underlying: 'Euro Stoxx 50 Index',
+                description: 'A bonus certificate offering enhanced returns if the underlying stays above the barrier level. Includes a 30% bonus on initial investment if conditions are met.',
+                features: [
+                    '30% bonus potential',
+                    'Barrier at 60% of initial level',
+                    'Quarterly observation dates',
+                    'Automatic early redemption feature',
+                    'Monthly coupon payments possible'
+                ],
+                riskLevel: 'Medium',
+                currentPrice: 101.2,
+                ytdPerformance: '+4.1%'
+            },
+            {
+                isin: 'CH1593451023',
+                name: 'Reverse Convertible on Tech Basket',
+                type: 'Reverse Convertible',
+                issuer: 'UBS AG',
+                currency: 'EUR',
+                issueDate: '2024-02-15',
+                maturityDate: '2025-08-15',
+                term: '18 months',
+                minimumInvestment: 25000,
+                coupon: '8.5% p.a.',
+                barrier: '70%',
+                underlying: 'Technology Stock Basket (AAPL, MSFT, NVDA, GOOGL)',
+                description: 'High-yield reverse convertible with 8.5% annual coupon. Investors may receive shares of the worst-performing underlying at maturity if barrier is breached.',
+                features: [
+                    '8.5% annual coupon rate',
+                    'Monthly coupon payments',
+                    'Barrier at 70% of initial level',
+                    'Potential physical delivery',
+                    'Diversified tech basket'
+                ],
+                riskLevel: 'Medium to High',
+                currentPrice: 99.8,
+                ytdPerformance: '+3.7%'
+            },
+            {
+                isin: 'CH1604562134',
+                name: 'Autocallable Note on Global Banks',
+                type: 'Autocallable',
+                issuer: 'Credit Suisse',
+                currency: 'EUR',
+                issueDate: '2024-04-01',
+                maturityDate: '2029-04-01',
+                term: '5 years',
+                minimumInvestment: 50000,
+                coupon: '7.0% p.a.',
+                autocallBarrier: '100%',
+                underlying: 'Basket of Global Banks (JPM, BAC, HSBC, DB)',
+                description: 'Autocallable note with annual observation. If all underlyings are at or above initial level, product autocalls with full principal plus accrued coupon.',
+                features: [
+                    '7% annual coupon if not autocalled',
+                    'Annual autocall observation',
+                    '100% autocall barrier',
+                    'Memory coupon feature',
+                    'Quarterly payments'
+                ],
+                riskLevel: 'Medium',
+                currentPrice: 100.5,
+                ytdPerformance: '+1.8%'
+            },
+            {
+                isin: 'CH1615673245',
+                name: 'Market Linked CD on ESG Leaders',
+                type: 'Market Linked CD',
+                issuer: 'Raiffeisen Switzerland',
+                currency: 'EUR',
+                issueDate: '2024-05-15',
+                maturityDate: '2028-05-15',
+                term: '4 years',
+                minimumInvestment: 10000,
+                capitalProtection: '95%',
+                participation: '100%',
+                underlying: 'MSCI World ESG Leaders Index',
+                description: 'Sustainable investment product tracking ESG-focused companies. Offers 95% capital protection with full participation in index gains.',
+                features: [
+                    '95% capital protection',
+                    '100% participation in ESG index',
+                    'Sustainable investment focus',
+                    'Tax-efficient structure',
+                    'FDIC insured principal'
+                ],
+                riskLevel: 'Low to Medium',
+                currentPrice: 99.2,
+                ytdPerformance: '+5.2%'
+            },
+            {
+                isin: 'CH1626784356',
+                name: 'Express Note on Asian Markets',
+                type: 'Express Certificate',
+                issuer: 'Vontobel Holding AG',
+                currency: 'EUR',
+                issueDate: '2024-06-01',
+                maturityDate: '2027-06-01',
+                term: '3 years',
+                minimumInvestment: 20000,
+                coupon: '6.5% p.a.',
+                expressionBarrier: '95%',
+                underlying: 'Hang Seng Index & Nikkei 225',
+                description: 'Express note with quarterly observation opportunities. Early redemption possible if underlyings meet barrier levels.',
+                features: [
+                    '6.5% annual coupon',
+                    'Quarterly expression dates',
+                    '95% expression barrier',
+                    'Dual underlying diversification',
+                    'Asian market exposure'
+                ],
+                riskLevel: 'Medium',
+                currentPrice: 100.1,
+                ytdPerformance: '+2.9%'
+            }
+        ];
+
+        // Portfolio Data
+        let portfolio = [];
+        let currentProduct = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            updatePortfolio();
+            loadAIRecommendations();
+            
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                });
+            });
+        });
+
+        // Load Products
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-isin">ISIN: ${product.isin}</div>
+                        <div class="product-name">${product.name}</div>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Issuer</span>
+                                <span class="detail-value">${product.issuer}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Currency</span>
+                                <span class="detail-value">${product.currency}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Term</span>
+                                <span class="detail-value">${product.term}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Min. Investment</span>
+                                <span class="detail-value">€${product.minimumInvestment.toLocaleString()}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Risk Level</span>
+                                <span class="detail-value">${product.riskLevel}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Current Price</span>
+                                <span class="detail-value">${product.currentPrice}%</span>
+                            </div>
+                        </div>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-features">
+                            <ul class="feature-list">
+                                ${product.features.map(f => `<li>${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <button class="btn ${isSubscribed(product.isin) ? 'btn-subscribed' : 'btn-primary'}" 
+                                onclick="${isSubscribed(product.isin) ? 'alert(\'Already subscribed to this product\')' : `openSubscriptionModal('${product.isin}')`}">
+                            <i class="fas ${isSubscribed(product.isin) ? 'fa-check' : 'fa-handshake'}"></i>
+                            ${isSubscribed(product.isin) ? 'Subscribed' : 'Subscribe Now'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function isSubscribed(isin) {
+            return portfolio.some(p => p.isin === isin);
+        }
+
+        // Modal Functions
+        function openSubscriptionModal(isin) {
+            currentProduct = products.find(p => p.isin === isin);
+            document.getElementById('modalProductName').value = currentProduct.name;
+            document.getElementById('modalProductIsin').value = currentProduct.isin;
+            document.getElementById('investmentAmount').value = '';
+            document.getElementById('subscriptionModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('subscriptionModal').classList.remove('active');
+        }
+
+        function confirmSubscription() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value);
+            if (!amount || amount < currentProduct.minimumInvestment) {
+                alert(`Minimum investment is €${currentProduct.minimumInvestment.toLocaleString()}`);
+                return;
+            }
+
+            portfolio.push({
+                isin: currentProduct.isin,
+                name: currentProduct.name,
+                amount: amount,
+                investmentDate: new Date().toISOString().split('T')[0],
+                currentValue: amount * (currentProduct.currentPrice / 100),
+                product: currentProduct
+            });
+
+            updatePortfolio();
+            loadProducts();
+            loadAIRecommendations();
+            closeModal();
+            
+            alert('Subscription successful! Your investment has been added to your portfolio.');
+        }
+
+        // Portfolio Functions
+        function updatePortfolio() {
+            const tbody = document.getElementById('portfolioTableBody');
+            
+            if (portfolio.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem;">No products in portfolio yet. Subscribe to get started!</td></tr>';
+                
+                document.getElementById('totalInvestment').textContent = '€0';
+                document.getElementById('currentValue').textContent = '€0';
+                document.getElementById('totalReturn').textContent = '€0';
+                document.getElementById('returnPercent').textContent = '+0.00%';
+                document.getElementById('productsHeld').textContent = '0';
+                return;
+            }
+
+            let totalInvestment = 0;
+            let totalCurrentValue = 0;
+
+            tbody.innerHTML = portfolio.map((item, index) => {
+                const returnValue = item.currentValue - item.amount;
+                const returnPercent = (returnValue / item.amount) * 100;
+                const returnClass = returnValue >= 0 ? 'positive' : 'negative';
+                
+                totalInvestment += item.amount;
+                totalCurrentValue += item.currentValue;
+
+                return `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.isin}</td>
+                        <td>${item.investmentDate}</td>
+                        <td>€${item.amount.toLocaleString()}</td>
+                        <td>€${item.currentValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                        <td class="${returnClass}">€${returnValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${returnPercent.toFixed(2)}%)</td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem;" onclick="sellProduct(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            const totalReturn = totalCurrentValue - totalInvestment;
+            const totalReturnPercent = (totalReturn / totalInvestment) * 100;
+            const returnClass = totalReturn >= 0 ? 'positive' : 'negative';
+
+            document.getElementById('totalInvestment').textContent = `€${totalInvestment.toLocaleString()}`;
+            document.getElementById('currentValue').textContent = `€${totalCurrentValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('totalReturn').textContent = `€${totalReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('returnPercent').textContent = `${totalReturn >= 0 ? '+' : ''}${totalReturnPercent.toFixed(2)}%`;
+            document.getElementById('returnPercent').className = `summary-change ${returnClass}`;
+            document.getElementById('productsHeld').textContent = portfolio.length;
+        }
+
+        function sellProduct(index) {
+            if (confirm('Are you sure you want to sell this product? Early redemption may result in losses.')) {
+                portfolio.splice(index, 1);
+                updatePortfolio();
+                loadProducts();
+                loadAIRecommendations();
+            }
+        }
+
+        // AI Companion Functions
+        function loadAIRecommendations() {
+            const container = document.getElementById('aiRecommendations');
+            
+            if (portfolio.length === 0) {
+                container.innerHTML = `
+                    <div class="recommendation-card">
+                        <strong>No Portfolio Yet</strong>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">Start by subscribing to some structured products to receive personalized AI recommendations.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const recommendations = generateAIRecommendations();
+            container.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-card ${rec.type}">
+                    <strong><i class="fas ${rec.icon}"></i> ${rec.title}</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">${rec.content}</p>
+                </div>
+            `).join('');
+        }
+
+        function generateAIRecommendations() {
+            const recommendations = [];
+            
+            // Analyze portfolio concentration
+            const types = {};
+            portfolio.forEach(item => {
+                types[item.product.type] = (types[item.product.type] || 0) + 1;
+            });
+
+            const maxType = Object.keys(types).reduce((a, b) => types[a] > types[b] ? a : b);
+            if (types[maxType] >= 2) {
+                recommendations.push({
+                    type: 'opportunity',
+                    icon: 'fa-lightbulb',
+                    title: 'Diversification Opportunity',
+                    content: `Your portfolio is heavily weighted towards ${maxType} products. Consider diversifying into other product types to reduce concentration risk.`
+                });
+            }
+
+            // Risk analysis
+            const highRiskProducts = portfolio.filter(p => p.product.riskLevel.includes('High'));
+            if (highRiskProducts.length > 0) {
+                recommendations.push({
+                    type: 'high-risk',
+                    icon: 'fa-exclamation-triangle',
+                    title: 'Risk Alert',
+                    content: `You have ${highRiskProducts.length} medium-to-high risk product(s) in your portfolio. Ensure this aligns with your risk tolerance.`
+                });
+            }
+
+            // Performance insight
+            const totalReturn = portfolio.reduce((sum, item) => sum + (item.currentValue - item.amount), 0);
+            if (totalReturn > 0) {
+                recommendations.push({
+                    type: 'opportunity',
+                    icon: 'fa-chart-line',
+                    title: 'Positive Performance',
+                    content: `Your portfolio is showing a positive return of €${totalReturn.toLocaleString(undefined, {maximumFractionDigits: 0})}. Consider taking partial profits on outperforming positions.`
+                });
+            }
+
+            // Maturity planning
+            const maturingSoon = portfolio.filter(p => {
+                const maturity = new Date(p.product.maturityDate);
+                const monthsToMaturity = (maturity - new Date()) / (1000 * 60 * 60 * 24 * 30);
+                return monthsToMaturity <= 12 && monthsToMaturity > 0;
+            });
+
+            if (maturingSoon.length > 0) {
+                recommendations.push({
+                    type: '',
+                    icon: 'fa-calendar-alt',
+                    title: 'Upcoming Maturities',
+                    content: `${maturingSoon.length} product(s) will mature within the next 12 months. Start planning reinvestment strategies now.`
+                });
+            }
+
+            if (recommendations.length === 0) {
+                recommendations.push({
+                    type: 'opportunity',
+                    icon: 'fa-check-circle',
+                    title: 'Well-Balanced Portfolio',
+                    content: 'Your portfolio appears well-diversified across different product types and risk levels. Continue monitoring regularly.'
+                });
+            }
+
+            return recommendations;
+        }
+
+        function sendAiMessage() {
+            const input = document.getElementById('aiInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            addAiMessage(message, 'user');
+            input.value = '';
+
+            // Simulate AI response
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                addAiMessage(response, 'ai');
+            }, 1000);
+        }
+
+        function addAiMessage(content, type) {
+            const messagesContainer = document.getElementById('aiChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas ${type === 'ai' ? 'fa-robot' : 'fa-user'}"></i>
+                </div>
+                <div class="message-content">
+                    ${content}
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function generateAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('risk')) {
+                return 'Based on your current portfolio, your overall risk profile is moderate. You have exposure to both capital-protected products and higher-yield reverse convertibles. I recommend maintaining this balanced approach while ensuring no single position exceeds 20% of your total portfolio.';
+            }
+            
+            if (lowerMessage.includes('return') || lowerMessage.includes('performance')) {
+                const totalReturn = portfolio.reduce((sum, item) => sum + (item.currentValue - item.amount), 0);
+                const returnPercent = portfolio.length > 0 ? (totalReturn / portfolio.reduce((sum, item) => sum + item.amount, 0)) * 100 : 0;
+                return `Your portfolio is currently showing a ${returnPercent >= 0 ? 'positive' : 'negative'} return of ${returnPercent.toFixed(2)}% (€${totalReturn.toLocaleString(undefined, {maximumFractionDigits: 0})}). This is ${returnPercent > 3 ? 'above' : 'in line with'} expectations for structured products in the current market environment.`;
+            }
+            
+            if (lowerMessage.includes('diversif')) {
+                return 'Diversification is key to managing risk in structured products. Consider spreading investments across: 1) Different underlying assets (equities, indices, baskets), 2) Various product types (capital protected, bonus certificates, reverse convertibles), 3) Multiple issuers to reduce counterparty risk, 4) Different maturities to manage interest rate risk.';
+            }
+            
+            if (lowerMessage.includes('recommend') || lowerMessage.includes('suggest')) {
+                return 'Based on current market conditions and your portfolio, I recommend: 1) Consider adding exposure to ESG-themed products for sustainable investing, 2) Look at autocallable notes in the current range-bound market, 3) Maintain 60-70% allocation to capital-protected products for stability.';
+            }
+            
+            if (lowerMessage.includes('market') || lowerMessage.includes('outlook')) {
+                return 'Current market outlook: Equity markets show moderate volatility with central bank policies being a key driver. This environment favors structured products with capital protection features and those benefiting from range-bound markets like autocallables and bonus certificates.';
+            }
+
+            return 'That\'s a great question! I can help you with portfolio analysis, risk assessment, performance tracking, investment recommendations, and market insights. Feel free to ask me anything specific about your structured products investments.';
+        }
+
+        function handleAiKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendAiMessage();
+            }
+        }
+
+        // Manager Chat Functions
+        function sendManagerMessage() {
+            const input = document.getElementById('managerInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            addManagerMessage(message, 'user');
+            input.value = '';
+
+            // Simulate manager response
+            setTimeout(() => {
+                const responses = [
+                    'Thank you for your message. I\'ll review your question and get back to you shortly.',
+                    'That\'s an excellent question. Let me check the details and provide you with a comprehensive answer.',
+                    'I appreciate you reaching out. Based on your portfolio, I\'d recommend...',
+                    'Great point! The product documentation specifies that...'
+                ];
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                addManagerMessage(response, 'ai');
+            }, 1500);
+        }
+
+        function addManagerMessage(content, type) {
+            const messagesContainer = document.getElementById('managerChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar" style="background: ${type === 'ai' ? 'linear-gradient(135deg, var(--accent-color), var(--secondary-color))' : 'var(--success-color)'}; color: white;">
+                    ${type === 'ai' ? 'SM' : 'JI'}
+                </div>
+                <div class="message-content">
+                    ${content}
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function handleManagerKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendManagerMessage();
+            }
+        }
+
+        function selectConversation(index) {
+            document.querySelectorAll('.conversation-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+</body>
+</html>
