@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Structured Products Platform | Professional Investment Portal</title>
+    <title>WeiseWealth Investment Platform | Professional Investment Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1169,6 +1169,199 @@
                 max-height: 90vh;
             }
         }
+    
+        /* Sign In Page Styles */
+        .signin-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .signin-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-2xl);
+            overflow: hidden;
+            display: flex;
+            max-width: 900px;
+            width: 90%;
+        }
+
+        .signin-left {
+            flex: 1;
+            background: var(--gradient-primary);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signin-branding {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .signin-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .signin-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .signin-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        .signin-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .signin-features li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .signin-features li i {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+        }
+
+        .signin-right {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signin-header {
+            margin-bottom: 2rem;
+        }
+
+        .signin-header h2 {
+            font-size: 1.75rem;
+            color: var(--neutral-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .signin-header p {
+            color: var(--neutral-500);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all var(--transition-base);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+        }
+
+        .btn-signin {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-signin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-red);
+            padding: 0.875rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-credentials {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--neutral-50);
+            border-radius: 12px;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .demo-credentials h4 {
+            font-size: 0.85rem;
+            color: var(--neutral-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-credentials code {
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            color: var(--primary-main);
+        }
+
+        .app-hidden {
+            display: none !important;
+        }
+
     </style>
 </head>
 <body>
@@ -1177,9 +1370,9 @@
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">
-                    <i class="fas fa-chart-line"></i>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="WeiseWealth Logo" style="width: 28px; height: 28px;">
                 </div>
-                <span>Structured Products Platform</span>
+                <span>WeiseWealth Investment Platform</span>
             </div>
             <div class="user-info">
                 <div class="user-details">
@@ -1997,5 +2190,102 @@
             });
         }
     </script>
+
+    <!-- Sign In Page -->
+    <div id="signinPage" class="signin-page">
+        <div class="signin-container">
+            <div class="signin-left">
+                <div class="signin-branding">
+                    <div class="signin-logo">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="WeiseWealth Logo" style="width: 45px; height: 45px;">
+                    </div>
+                    <h1 class="signin-title">WeiseWealth</h1>
+                    <p class="signin-subtitle">Investment Platform</p>
+                </div>
+                <ul class="signin-features">
+                    <li><i class="fas fa-check-circle"></i> Access exclusive structured products</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time portfolio monitoring</li>
+                    <li><i class="fas fa-check-circle"></i> AI-powered investment insights</li>
+                    <li><i class="fas fa-check-circle"></i> Direct manager communication</li>
+                </ul>
+            </div>
+            <div class="signin-right">
+                <div class="signin-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access your investment portfolio</p>
+                </div>
+                
+                <form id="signinForm" onsubmit="handleSignIn(event)">
+                    <div class="error-message" id="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Invalid email or password.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="investor@weisewealth.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="btn-signin">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+
+                <div class="demo-credentials">
+                    <h4>Demo Credentials</h4>
+                    <p>Email: <code>investor@weisewealth.com</code></p>
+                    <p>Password: <code>demo123</code></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAuth() {
+            const savedAuth = localStorage.getItem('weisewealth_auth');
+            if (savedAuth) {
+                document.getElementById('signinPage').classList.add('app-hidden');
+            } else {
+                document.getElementById('signinPage').classList.remove('app-hidden');
+            }
+        }
+
+        function handleSignIn(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-message');
+
+            if (email === 'investor@weisewealth.com' && password === 'demo123') {
+                localStorage.setItem('weisewealth_auth', JSON.stringify({ email }));
+                errorDiv.style.display = 'none';
+                document.getElementById('signinPage').classList.add('app-hidden');
+            } else {
+                errorDiv.style.display = 'flex';
+            }
+        }
+
+        function handleSignOut() {
+            localStorage.removeItem('weisewealth_auth');
+            location.reload();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            const userInfo = document.querySelector('.user-info');
+            const signOutBtn = document.createElement('button');
+            signOutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
+            signOutBtn.style.cssText = 'background: rgba(255,255,255,0.2); border: none; color: white; padding: 0.5rem; border-radius: 8px; cursor: pointer; margin-left: 0.5rem;';
+            signOutBtn.title = 'Sign Out';
+            signOutBtn.onclick = handleSignOut;
+            userInfo.appendChild(signOutBtn);
+        });
+    </script>
+
 </body>
 </html>
